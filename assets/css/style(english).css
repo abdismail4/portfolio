@@ -1,0 +1,1463 @@
+/* ==================== Fonts ==================== */
+/* Google Fonts استيراد خط Jost لتنسيق النصوص.
+  Font-Face تعريف خط مخصص Tuesday Night لتستخدمه في الشعارات.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'Tuesday Night';
+    src: url('../fonts/TuesdayNight-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==================== Root Variables ==================== */
+/* تعريف ألوان و خليفات في التصميم لتمكن من تبديل بين الأوضاع */
+:root {
+    --main-color: #c07f50;
+    --main-color-rgb: 192, 127, 80;
+    --main-color-dark: #a3693e;
+
+    --bg-light: #f8f2ed;
+    --bg-secondary-light: #ffffff;
+    --color-text-light: #1a1e21;
+
+    --border-color-light: rgba(0, 0, 0, 0.1);
+    --shadow-color-light: rgba(0, 0, 0, 0.05);
+
+    --intro-card-light: rgba(207, 207, 207, 0.683);
+    --transition-speed: 0.3s ease;
+    --default-transition: all 0.3s ease;
+
+    --section-padding-desktop: 80px 0;
+    --section-padding-tablet: 60px 0;
+    --section-padding-mobile: 40px 0;
+
+    --grid-gap-desktop: 30px;
+    --grid-gap-mobile: 20px;
+}
+
+body.dark-theme {
+    --bg-light: #111111;
+    --bg-secondary-light: #222222;
+    --color-text-light: #ffffff;
+    --border-color-light: rgba(255, 255, 255, 0.1);
+    --shadow-color-light: rgba(255, 255, 255, 0.05);
+    --intro-card-light: rgba(0, 0, 0, 0.68);
+}
+
+/* ==================== Reset & Base Styles ==================== */
+/* تعيين الهوامش و الحشوات و تحديد السلوك الافتراضي لصمان تناسق الستايل عبر اختلاف المتصفحات */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    background-color: var(--bg-light);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    overflow-x: hidden;
+    height: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* === Base Elements === */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--main-color);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* ====================  Layout & Structure ==================== */
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ====================  Navigation ==================== */
+/* قائمة جانبية تتغير مع الثيم وتحتوي على أيقونات باستخدام مكتبة مثل Boxicons */
+.left-sidebar {
+    width: 20%;
+    flex-shrink: 0;
+    background-color: var(--bg-secondary-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 0 10px var(--shadow-color-light);
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    justify-content: center;
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 20%;
+    position: relative;
+    z-index: 1;
+    transition: margin-left var(--transition-speed), transform var(--transition-speed);
+}
+
+.left-sidebar.active {
+    transform: translateX(0);
+}
+
+body.sidebar-active .main-content {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-header {
+    padding-top: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* في هان ميل النص */
+.logo-text {
+    font-family: 'Tuesday Night', cursive;
+    font-size: 2.5em;
+    color: var(--main-color);
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+     z-index: 1;
+}
+
+.main-nav {
+    margin-top: 70px;
+}
+
+.main-nav ul {
+    text-align: left;
+    padding-left: 0;
+    list-style: none;
+}
+
+.main-nav ul li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul li a {
+    font-size: 0.95em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.main-nav ul li a i {
+    font-size: 1.5em;
+}
+
+.main-nav ul li a:is(:hover, .active) {
+    color: #a3693e;
+}
+
+.main-nav ul li a:is(:hover i, .active i) {
+    color: #a3693e;
+}
+
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+    position: relative;
+    transition: all var(--transition-speed);
+}
+
+.sidebar-footer-main-nav {
+    margin-top: 20px;
+}
+
+.sidebar-footer-main-nav ul {
+    align-items: center;
+}
+
+.sidebar-footer .footer-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.sidebar-copyright {
+    position: relative;
+    padding-top: 20px;
+    margin-top: 50px;
+    font-size: 0.9em;
+    opacity: 0.9;
+    align-items: end;
+}
+
+.sidebar-copyright::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    height: 3px;
+    background-color: var(--main-color);
+}
+
+.sidebar-copyright span {
+    font-weight: 600;
+    color:var(--main-color);
+}
+
+/*زر لتبديل بين الوضع الليلي والنهاري عبر تغيير الـ body.dark-theme والتحكم بالمتغيرات.  */
+.theme-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+.theme-toggle .light-icon {
+    opacity: 1;
+}
+
+.theme-toggle .dark-icon {
+    opacity: 0;
+}
+
+body.dark-theme .theme-toggle .light-icon {
+    opacity: 0;
+}
+
+body.dark-theme .theme-toggle .dark-icon {
+    opacity: 1;
+}
+
+.theme-toggle:hover i {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.theme-toggle:active i {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* ==================== Mobile Header ==================== */
+/*  رأس للهواتف يظهر فقط على الشاشات الصغيرة باستخدام display: none ثم display: flex في الميديا كويري*/
+.mobile-header {
+    display: none;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: var(--bg-secondary-light);
+    box-shadow: 0 2px 10px var(--shadow-color-light);
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.mobile-header .menu-toggle {
+    font-size: 1.8em;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.mobile-logo-text {
+    font-family: 'Tuesday Night', cursive;
+    font-size: 1.8em;
+    color: var(--color-text-light);
+}
+
+/* ==================== Hero Section ==================== */
+.section {
+    padding: var(--section-padding-desktop);
+    margin-bottom: 0;
+    background-color: var(--bg-light);
+    transition: background-color var(--transition-speed);
+    align-content: center;
+    min-height: 100vh;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title .sub-title {
+    color: var(--main-color);
+    font-size: 1.1em;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+    font-size: clamp(2em, 5vw, 2.8em);
+    color: var(--color-text-light);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateX(0);
+    width: 0;
+    height: 3px;
+    background-color: var(--main-color);
+    border-radius: 2px;
+    transition: width 0.7s ease;
+}
+
+.section-title h2:hover::after {
+    width: 100%;
+    right: auto;
+    left: 0;
+}
+
+/* ==================== Main Screen ==================== */
+/* خلفية جذابة بملء الشاشة تحتوي على بطاقة تعريفية intro-card تحتوي على الاسم، الوظيفة، ووسائل التواصل. */
+.main-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 0;
+}
+
+.home-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.intro-card {
+    background-color: var(--intro-card-light);
+    color: var(--color-text-light);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 214, 214, 0.2);
+    position: absolute;
+    bottom: 5%;
+    left: 30%;
+    transform: translateX(-50%);
+    text-align: left;
+    min-width: 280px;
+    max-width: 90%;
+    width: clamp(300px, 70vw, 700px);
+    transition: all 0.7s ease;
+    border: 2px solid transparent;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed), border var(--transition-speed);
+
+}
+
+.intro-card h2 {
+    font-size: clamp(1.5em, 4vw, 2em);
+    margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.intro-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--main-color);
+    transition: width 0.3s ease;
+}
+
+.intro-card h2:hover::after {
+    width: 100%;
+}
+
+.intro-card .role {
+    color: var(--main-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.contact-info-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.contact-info-list li i {
+    color: var(--main-color);
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+/* ====================  Sections (About) ==================== */
+/* معلومات شخصية مع صورة، وقائمة ببيانات مثل العمر، الخبرة، الإيميل... إلخ. */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: var(--grid-gap-desktop);
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.details-list li {
+    font-size: 0.95em;
+}
+
+.details-list li span {
+    font-weight: 600;
+    color: var(--main-color);
+    margin-right: 5px;
+}
+
+
+.frame {
+    position: relative;
+    width: clamp(300px, 40vw, 350px);
+    height: clamp(300px, 50vw, 400px);
+    overflow: visible;
+    display: inline-block;
+}
+
+.frame img {
+    width: 90%;
+    margin-left: 10%;
+    height: 90%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.frame::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    border: 10px solid #c07f5059;
+    z-index: 0;
+}
+
+
+
+/* .about-image {
+    flex-shrink: 0;
+    width: clamp(280px, 40vw, 350px);
+    height: clamp(300px, 50vw, 400px);
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px var(--shadow-color-light);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.7s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #a3693e;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* ====================  Sections (services) ==================== */
+/*  شبكة من البطاقات تعرض خدماتك، تحتوي على أيقونة، عنوان ووصف، وتتحول للون آخر عند التمرير.*/
+.services {
+    background-color: var(--bg-secondary-light);
+}
+
+.services-grid {
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--grid-gap-desktop);
+}
+
+.service-item {
+    height: 300px;
+    background-color: var(--bg-secondary-light);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    position: relative;
+    overflow: hidden;
+    transition: background-color var(--transition-speed), transform 0.3s ease, box-shadow var(--transition-speed);
+}
+
+.service-item i {
+    font-size: 3.5em;
+    color: var(--main-color);
+    margin-bottom: 15px;
+}
+
+.service-item h3 {
+    font-size: clamp(1.3em, 3vw, 1.5em);
+    margin-bottom: 10px;
+    color: var(--color-text-light);
+    position: relative;
+    display: inline-block;
+}
+
+.service-item h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.service-item:hover h3::after {
+    width: 100%;
+}
+
+.service-item p {
+    font-size: 0.95em;
+    color: var(--color-text-light);
+    opacity: 0.8;
+}
+
+.service-item .service-number {
+    position: absolute;
+    bottom: -10px;
+    right: 15px;
+    font-size: 3.5em;
+    font-weight: 700;
+    opacity: 0.3;
+    z-index: 1;
+    color: var(--bg-secondary-light);
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--main-color);
+    text-shadow: none;
+    font-family: 'Jost', sans-serif;
+}
+
+.service-item:hover {
+    background-color: var(--main-color);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(var(--main-color-rgb), 0.4);
+}
+
+.service-item:hover :is(i, h3, p, .service-number) {
+    color: white;
+}
+
+/* ====================  Sections (Work) ==================== */
+/* عرض للأعمال أو المشاريع مع تأثيرات تمرير تظهر عنوان ومعلومة مختصرة. */
+.work-grid {
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--grid-gap-desktop);
+}
+
+.work-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    transition: transform 0.7s ease, box-shadow var(--transition-speed);
+}
+
+.work-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.work-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--main-color-rgb), 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+.work-item:hover .work-overlay {
+    opacity: 1;
+}
+
+.work-item:hover img {
+    transform: scale(1.05);
+}
+
+.work-overlay h3 {
+    font-size: clamp(1.5em, 3.5vw, 1.8em);
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.work-overlay h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.4s ease;
+}
+
+.work-item:hover .work-overlay h3::after {
+    width: 100%;
+}
+
+.work-overlay p {
+    font-size: 1em;
+}
+
+/* ====================  Sections (Blog) ==================== */
+/*  بطاقات لمشاركات مدونة أو مقالات مع تأثيرات مميزة.*/
+.blog {
+    background-color: var(--bg-secondary-light);
+    height: 120vh;
+}
+
+.blog-grid {
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--grid-gap-desktop);
+}
+
+.blog-post {
+    background-color: var(--bg-secondary-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    transition: transform 0.7s ease, box-shadow var(--transition-speed), background-color var(--transition-speed);
+}
+
+.blog-post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px var(--shadow-color-light);
+}
+
+.blog-post img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.blog-post:hover img {
+    transform: rotate(2.5deg) scale(1.1);
+}
+
+.post-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px 10px;
+    font-size: 0.9em;
+    color: var(--color-text-light);
+    opacity: 0.7;
+}
+
+.post-info .category {
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.blog-post h3 {
+    font-size: clamp(1.1em, 2.8vw, 1.3em);
+    padding: 0 20px 20px;
+    color: var(--color-text-light);
+    position: relative;
+    display: inline-block;
+}
+
+.blog-post h3::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    width: 0;
+    height: 2px;
+    background-color: var(--main-color);
+    transition: width 0.7s ease;
+    transform-origin: left center;
+}
+
+.blog-post:hover h3::after {
+    width: calc(100% - 40px);
+}
+
+/* ====================  Sections (Content) ==================== */
+/* نموذج تواصل + معلومات الاتصال، منسق بشكل جميل باستخدام Flexbox. */
+.contact-content {
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: var(--grid-gap-desktop);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contact-info-block {
+    flex: 1;
+    min-width: 280px;
+    background-color: var(--bg-secondary-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.contact-info-block h3 {
+    font-size: clamp(1.5em, 3.5vw, 1.8em);
+    margin-bottom: 20px;
+    color: var(--color-text-light);
+}
+
+.contact-info-block p {
+    margin-bottom: 25px;
+    font-size: 1.05em;
+    color: var(--color-text-light);
+    opacity: 0.9;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: var(--color-text-light);
+}
+
+.contact-details li i {
+    color: var(--main-color);
+    margin-right: 15px;
+    font-size: 1.5em;
+}
+
+.contact-form {
+    flex: 2;
+    min-width: 280px;
+    background-color: var(--bg-secondary-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color-light);
+    border-radius: 5px;
+    background-color: var(--bg-light);
+    color: var(--color-text-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 1em;
+    transition: border-color 0.3s ease, background-color var(--transition-speed);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 2px rgba(var(--main-color-rgb), 0.2);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.send-message-btn {
+    width: auto;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* ==================== Scroll Button ==================== */
+/* زر دائري يظهر عند التمرير للأسفل، يتيح الرجوع لأعلى الصفحة. */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--main-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 990;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background-color: #a3693e;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* ==================== Footer ==================== */
+/* مقسم إلى:شعار الموقع ،روابط مهمة ،روابط تواصل اجتماعي ،حقوق النشر */
+.site-footer {
+    background-color: var(--bg-secondary-light);
+    color: var(--color-text-light);
+    padding: 60px 0 0;
+    border-top: 1px solid var(--border-color-light);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: start;
+    gap: var(--grid-gap-desktop);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.footer-logo {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--main-color);
+    margin-bottom: 15px;
+}
+
+.footer-logo h3 {
+    font-family: 'Tuesday Night', cursive;
+    font-size: 2em;
+    color: var(--color-text-light);
+}
+
+.footer-links {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--grid-gap-desktop);
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 160px;
+}
+
+.footer-column h4 {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    color: var(--color-text-light);
+}
+
+/*=============*/
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--main-color);
+    transition: width 0.3s ease;
+}
+
+
+.footer-column:hover h4::after {
+    width: 80px;
+}
+
+.footer-column ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-column li {
+    font-size: 0.95em;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-column li:hover {
+    transform: translateX(5px);
+    color: var(--main-color);
+}
+
+.footer-column li i {
+    color: var(--main-color);
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color-light);
+    padding: 20px 0;
+    margin-top: 40px;
+    text-align: center;
+    background-color: var(--main-color);
+    color: var(--bg-light);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-light);
+    color: var(--color-text-light);
+    font-size: 1.2em;
+    transition: var(--default-transition);
+}
+
+.social-links a:hover {
+    background-color: white;
+    color: var(--main-color);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.copyright span {
+    color: var(--bg-light);
+}
+
+/* ====================  Media Queries ==================== */
+/* استجابة ممتازة لجميع أحجام الشاشات:
+992px: للتابلت
+768px: للهواتف المتوسطة
+480px: للهواتف الصغيرة
+ */
+@media (max-width: 992px) {
+    .left-sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        width: 250px;
+        z-index: 1000;
+        transition: transform var(--transition-speed);
+    }
+
+    .left-sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 70px;
+    }
+
+    .mobile-header {
+        display: flex;
+    }
+
+    .section {
+        padding: var(--section-padding-tablet);
+    }
+
+    .home-content,
+    .about-content,
+    .services-grid,
+    .work-grid,
+    .blog-grid,
+    .contact-content,
+    .footer-content {
+        flex-direction: column;
+        gap: var(--grid-gap-mobile);
+        width: 100%;
+        padding: 0 3%;
+    }
+
+    .intro-card {
+        margin: 20px;
+        bottom: 3%;
+        padding: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+
+    .about-text,
+    .contact-info-block,
+    .contact-form {
+        width: 100%;
+    }
+
+    .footer-content {
+        text-align: center;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: var(--section-padding-mobile);
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+        font-size: clamp(1.8em, 7vw, 2.5em);
+    }
+
+    .mobile-logo-text {
+        font-size: 1.5em;
+    }
+
+    .main-nav ul li a {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .main-nav ul li a i {
+        font-size: 1.2em;
+    }
+
+    .about-image {
+        width: clamp(250px, 60vw, 300px);
+        height: clamp(280px, 70vw, 350px);
+    }
+
+    .details-list {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid,
+    .work-grid,
+    .blog-grid,
+    .contact-content {
+        grid-template-columns: 1fr;
+        padding: 0 5%;
+        gap: var(--grid-gap-mobile);
+    }
+
+    .service-item,
+    .work-item,
+    .blog-post,
+    .contact-info-block,
+    .contact-form {
+        width: 100%;
+    }
+
+    .footer-logo {
+        align-items: center;
+    }
+
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5em;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-content .mobile-header {
+        padding: 10px 15px;
+    }
+
+    .mobile-logo-text {
+        font-size: 1.3em;
+    }
+
+    .section-title h2 {
+        font-size: clamp(1.5em, 8vw, 2.2em);
+    }
+
+    .intro-card {
+        margin: 20px;
+        padding: 15px 20px;
+        bottom: 2%;
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .intro-card h2 {
+        font-size: clamp(1.3em, 6vw, 1.8em);
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .main-nav ul li a {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+
+    .main-nav ul li a i {
+        font-size: 1.1em;
+    }
+}
+
+/* لإلغاء التحولات للزوار ذوي الاحتياجات الخاصة */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/*يجعل الاتجاه من اليمين إلى اليسار (direction: rtl).
+يضبط محاذاة النصوص إلى اليمين
+  */
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+}
+/* نقل الشريط إلى اليمين و يعكس الظل وتعديل الهوامش */
+html[dir="rtl"] .left-sidebar {
+    left: auto;
+    right: 0;
+    box-shadow: -2px 0 10px var(--shadow-color-light);
+}
+
+
+html[dir="rtl"] .main-content {
+    margin-left: 0;
+    margin-right: 250px;
+}
+/* يعكس اتجاه الأيقونات والنصوص داخل العناصر ||يجعل أيقونة القائمة تظهر قبل النص عند العرض العربي.  */
+html[dir="rtl"] .main-nav ul {
+    text-align: left;
+}
+
+
+html[dir="rtl"] .main-nav ul li a {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+html[dir="rtl"] .main-nav ul li a i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .section-title h2::after {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+}
+
+/* يغير مكان بطاقة التعريف إلى اليمين ويضبط محاذاتها. */
+html[dir="rtl"] .intro-card {
+    text-align: right;
+    left: auto;
+    right: 20%;
+    transform: translateX(50%);
+}
+
+html[dir="rtl"] .intro-card h2::after {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .contact-info-list li {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+html[dir="rtl"] .contact-info-list li i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .about-text,
+html[dir="rtl"] .details-list {
+    text-align: right;
+}
+
+html[dir="rtl"] .details-list li span {
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+/* Services يغير مكان رقم الخدمة من اليمين إلى اليسار. */
+html[dir="rtl"] .service-item .service-number {
+    right: auto;
+    left: 15px;
+}
+
+/* Contact Form || يعكس اتجاه الحقول والنصوص. || يجعل الأيقونات تظهر بعد النص */
+html[dir="rtl"] .contact-form input,
+html[dir="rtl"] .contact-form textarea {
+    text-align: right;
+    padding-right: 15px;
+    padding-left: 12px;
+}
+
+html[dir="rtl"] .contact-details li {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+html[dir="rtl"] .contact-details li i {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* Scroll to top  || ينقله من اليمين إلى اليسار*/
+html[dir="rtl"] .scroll-to-top {
+    right: auto;
+    left: 30px;
+}
+
+html[dir="rtl"] .footer-logo,
+html[dir="rtl"] .footer-column {
+    text-align: right;
+}
+
+.footer-column h4::after {
+    right: 0;
+}
+
+html[dir="rtl"] .footer-column li {
+    direction: rtl;
+}
+
+html[dir="rtl"] .footer-column li i {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+/* Responsive || يعكس تحريك الشريط الجانبي في الشاشات الصغيرة || يحافظ على التنسيق يمينًا حتى في العرض المتجاوب*/
+@media (max-width: 992px) {
+    html[dir="rtl"] .left-sidebar {
+        right: -450px; 
+        left: auto;
+        box-shadow: 2px 0 10px var(--shadow-color-light); 
+    }
+
+    html[dir="rtl"] .left-sidebar.active {
+        right: 0; 
+    }
+
+    html[dir="rtl"] .main-content {
+        margin-right: 0; 
+    }
+
+    html[dir="rtl"] .home-content,
+    html[dir="rtl"] .about-content,
+    html[dir="rtl"] .contact-content {
+        text-align: right;
+        align-items: center;
+    }
+
+    html[dir="rtl"] .intro-card {
+        text-align: right;
+    }
+
+    html[dir="rtl"] .details-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 780px){
+    html[dir="rtl"] .left-sidebar {
+        right: -250px;
+        left: auto;
+    }
+
+    html[dir="rtl"] .left-sidebar.active {
+        right: 0;
+    }
+}
+@media (max-width: 480px){
+    html[dir="rtl"] .left-sidebar {
+        right: -250px; 
+        left: auto;
+    }
+
+    html[dir="rtl"] .left-sidebar.active {
+        right: 0;
+    }
+}
