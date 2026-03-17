@@ -174,7 +174,7 @@ body.sidebar-active .main-content {
     line-height: 1;
     align-items: center;
     justify-content: center;
-     z-index: 1;
+    z-index: 1;
 }
 
 .main-nav {
@@ -266,7 +266,7 @@ body.sidebar-active .main-content {
 
 .sidebar-copyright span {
     font-weight: 600;
-    color:var(--main-color);
+    color: var(--main-color);
 }
 
 /*زر لتبديل بين الوضع الليلي والنهاري عبر تغيير الـ body.dark-theme والتحكم بالمتغيرات.  */
@@ -397,9 +397,11 @@ body.dark-theme .theme-toggle .dark-icon {
     justify-content: center;
     height: 100vh;
     text-align: center;
-    background-image: url('../images/hero.jpg');
+    background-image: url('../images/aabd.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
     overflow: hidden;
     padding-top: 0;
@@ -1294,6 +1296,7 @@ html[dir="rtl"] body {
     direction: rtl;
     text-align: right;
 }
+
 /* نقل الشريط إلى اليمين و يعكس الظل وتعديل الهوامش */
 html[dir="rtl"] .left-sidebar {
     left: auto;
@@ -1306,6 +1309,7 @@ html[dir="rtl"] .main-content {
     margin-left: 0;
     margin-right: 250px;
 }
+
 /* يعكس اتجاه الأيقونات والنصوص داخل العناصر ||يجعل أيقونة القائمة تظهر قبل النص عند العرض العربي.  */
 html[dir="rtl"] .main-nav ul {
     text-align: left;
@@ -1412,17 +1416,17 @@ html[dir="rtl"] .footer-column li i {
 /* Responsive || يعكس تحريك الشريط الجانبي في الشاشات الصغيرة || يحافظ على التنسيق يمينًا حتى في العرض المتجاوب*/
 @media (max-width: 992px) {
     html[dir="rtl"] .left-sidebar {
-        right: -450px; 
+        right: -450px;
         left: auto;
-        box-shadow: 2px 0 10px var(--shadow-color-light); 
+        box-shadow: 2px 0 10px var(--shadow-color-light);
     }
 
     html[dir="rtl"] .left-sidebar.active {
-        right: 0; 
+        right: 0;
     }
 
     html[dir="rtl"] .main-content {
-        margin-right: 0; 
+        margin-right: 0;
     }
 
     html[dir="rtl"] .home-content,
@@ -1441,7 +1445,7 @@ html[dir="rtl"] .footer-column li i {
     }
 }
 
-@media (max-width: 780px){
+@media (max-width: 780px) {
     html[dir="rtl"] .left-sidebar {
         right: -250px;
         left: auto;
@@ -1451,9 +1455,10 @@ html[dir="rtl"] .footer-column li i {
         right: 0;
     }
 }
-@media (max-width: 480px){
+
+@media (max-width: 480px) {
     html[dir="rtl"] .left-sidebar {
-        right: -250px; 
+        right: -250px;
         left: auto;
     }
 
